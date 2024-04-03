@@ -13,9 +13,7 @@ function validateNameSubject(string) {
 // Validar mensaje
 function validateMessage(message) {
   // debe tener minimo 20 caracteres, solo puede contener puntos, comas, punto y coma, comillas y espacios, además puede aceptar tildes
-  const re = /^[a-zA-Z0-9.,;""\sáéíóúÁÉÍÓÚñÑ]{20,}$/;
-  console.log(re.test(message));
-  console.log(message.length);
+  const re = /^[a-zA-Z0-9.,;""!¡\sáéíóúÁÉÍÓÚñÑ]{20,}$/;
   return re.test(message);
 }
 
