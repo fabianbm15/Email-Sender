@@ -18,9 +18,9 @@ function validateMessage(message) {
 }
 
 // validar apiResend, debe comenzar con "re_"
-function validateApiResend(apiResend) {
+function validateApiResend(apiKeyResend) {
   const re = /^re_[a-zA-Z0-9._-]{3,}$/;
-  return re.test(apiResend);
+  return re.test(apiKeyResend);
 }
 
 module.exports = {

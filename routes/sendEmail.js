@@ -8,7 +8,7 @@ const {
   validateEmail,
   validateNameSubject,
   validateMessage,
-  validateApiResend,
+  validateapiKeyResend,
 } = require("../utils/validate");
 const e = require("express");
 
@@ -19,10 +19,17 @@ router.get("/", function (req, res, next) {
 
 router.post("/", async function (req, res, next) {
   // Obtener nombre, email, asunto, mensaje de query
-  const { name, email, subject, message, apiResend, emailToSend } = req.body;
+  const { name, email, subject, message, apiKeyResend, emailToSend } = req.body;
 
   // Manejar error si no recibo estos datos
-  if (!name || !email || !subject || !message || !apiResend || !emailToSend) {
+  if (
+    !name ||
+    !email ||
+    !subject ||
+    !message ||
+    !apiKeyResend ||
+    !emailToSend
+  ) {
     return res.status(400).send("Missing parameters");
   }
 
@@ -41,9 +48,9 @@ router.post("/", async function (req, res, next) {
     return res.status(400).send("Invalid name");
   }
 
-  // Validar si la apiResend es correcta
-  if (!validateApiResend(apiResend)) {
-    return res.status(400).send("Invalid apiResend");
+  // Validar si la apiKeyResend es correcta
+  if (!validateapiKeyResend(apiKeyResend)) {
+    return res.status(400).send("Invalid apiKeyResend");
   }
 
   // Validar si el mensaje es correcto
@@ -53,7 +60,7 @@ router.post("/", async function (req, res, next) {
 
   // Crear una instancia de Resend
   try {
-    resend = new Resend(apiResend);
+    resend = new Resend(apiKeyResend);
   } catch (error) {
     return res.status(500).send(error.message);
   }
