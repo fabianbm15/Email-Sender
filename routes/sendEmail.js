@@ -8,7 +8,7 @@ const {
   validateEmail,
   validateNameSubject,
   validateMessage,
-  validateapiKeyResend,
+  validateApiResend,
 } = require("../utils/validate");
 const e = require("express");
 
@@ -49,7 +49,7 @@ router.post("/", async function (req, res, next) {
   }
 
   // Validar si la apiKeyResend es correcta
-  if (!validateapiKeyResend(apiKeyResend)) {
+  if (!validateApiResend(apiKeyResend)) {
     return res.status(400).send("Invalid apiKeyResend");
   }
 
